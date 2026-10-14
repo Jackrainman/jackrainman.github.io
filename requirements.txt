@@ -1,0 +1,15 @@
+# 版本已在本地实测构建锁定（mkdocs build --strict 零警告）
+# 上游 mkdocs 2.0 已声明不兼容且移除插件系统，未锁版本会让 CI 在某次重新安装时直接崩
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+Markdown==3.11
+pymdown-extensions==12.2
+PyYAML==6.0.3
+mdx-truly-sane-lists==1.3
+jieba==0.42.1
+Babel==2.18.0
+mkdocs-static-i18n==1.3.1
+mkdocs-minify-plugin==0.8.0
+# 以下两个已安装但 mkdocs.yml 未启用，保留待确认用途
+mkdocs-roamlinks-plugin==0.3.2
+mkdocs-git-revision-date-localized-plugin==1.6.0

@@ -1,0 +1,155 @@
+site_name: Web_of_Jackrainman
+site_description: Jackrainman 文档站
+site_url: https://jackrainman.github.io/web_next/
+repo_url:
+edit_uri: https://github.com/Jackrainman/web_next/edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  font:
+    text: "Noto Sans SC - local"
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: blue
+      toggle:
+        icon: material/eye
+        name: 切换暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/eye-outline
+        name: 切换亮色模式
+  language: zh
+  logo: img/logo-banner.png
+  favicon: img/logo.png
+  features:
+    - content.code.copy
+    - content.action.edit
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: material/github
+
+plugins:
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      languages:
+        - locale: zh
+          default: true
+          name: 简体中文
+          build: true
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      cache_safe: true
+
+exclude_docs: |
+  zh/.obsidian/**
+  zh/_Inbox/**
+  zh/_Private/**
+  zh/_Drafts/**
+  zh/_Archive/**
+  zh/00_VibeCoding/**
+  zh/2026R1/**
+  zh/培养/**
+  zh/寒假任务相关知识/**
+  zh/运营/**
+  zh/文档规范/**
+  zh/Chassis/0_底盘调试注意事项.md
+  zh/Chassis/自动跑点控制流图.md
+  zh/Chassis/底盘解算.md
+  zh/SpeedPlan/架构设计方案_v1.0.md
+  zh/SpeedPlan/改进说明.md
+  zh/SpeedPlan/底盘平滑模块_更新说明_v2.0.md
+  zh/SpeedPlan/trajectory_plan封装优化方案.md
+  zh/**/Legacy/**
+  zh/**/废弃文档/**
+  zh/**/*_Prompt.md
+  zh/**/chatgpt.md
+  zh/AGENTS.md
+  zh/当前任务.md
+  zh/备忘录.md
+  zh/未命名.md
+  zh/关于使用AI的一些个人规定.md
+  zh/软件工程-开学第一课感想.md
+
+extra:
+  generator: false
+  # --- 新增 giscus 配置 ---
+  comments:
+    provider: giscus
+    options:
+      repo: Jackrainman/Jackrainman.github.io
+      repo_id: DIC_kwDOQ9R6kc4C1xkk
+      category: Announcements
+      category_id: DIC_kwD...         # 填入你在 giscus.app 查到的 ID
+      mapping: pathname
+      strict: "0"
+      reactions_enabled: "1"
+      emit_metadata: "0"
+      input_position: bottom
+      theme: preferred_color_scheme   # 自动跟随你配置的亮/暗模式
+      lang: zh-CN
+      loading: lazy
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums: true
+      linenums_style: pymdownx.inline
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - meta
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - mdx_truly_sane_lists
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
+  - javascripts/mathjax.js
+  - javascripts/ide-theme.js
+  - javascripts/stats-animation.js
+  - javascripts/lazy-load.js
+  - javascripts/performance.js
+  - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md

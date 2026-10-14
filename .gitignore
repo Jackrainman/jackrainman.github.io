@@ -1,0 +1,52 @@
+# ---- 构建产物 ----
+/site
+.cache/
+
+# ---- Python 环境 ----
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# ---- AI 工具本地状态 ----
+# 技能、脚本、提示词统一放 .agents/（纳入版本库）；工具私有状态不提交
+.opencode/
+.claude/settings.local.json
+.qoder/
+
+# 禁止 AI 产物落进正文目录或仓库根
+docs/**/AGENTS.md
+docs/**/*_Prompt.md
+docs/**/chatgpt.md
+
+# ---- Obsidian 私人区：不构建也不提交 ----
+docs/zh/.obsidian/
+docs/zh/_Inbox/
+docs/zh/_Private/
+docs/zh/_Drafts/
+docs/zh/_Archive/
+
+# ---- 队内/个人内容：只在本地存在 ----
+# 这些路径已在 mkdocs.yml exclude_docs 中排除构建，但缺少 git 拦截，
+# 历史上曾整批提交进仓库（培养方案、运营、任务笔记等）
+docs/zh/2026R1/
+docs/zh/00_VibeCoding/
+docs/zh/培养/
+docs/zh/运营/
+docs/zh/文档规范/
+docs/zh/寒假任务相关知识/
+docs/zh/当前任务.md
+docs/zh/备忘录.md
+docs/zh/未命名.md
+
+# ---- 编辑器与系统 ----
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---- 临时与日志 ----
+*.log
+*.tmp
+/tmp/

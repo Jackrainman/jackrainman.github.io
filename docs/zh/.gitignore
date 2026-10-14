@@ -1,0 +1,25 @@
+# 相对本目录生效，与根 .gitignore 双重拦截
+.obsidian/
+_Inbox/
+_Private/
+_Drafts/
+_Archive/
+
+# 队内/个人内容
+2026R1/
+00_VibeCoding/
+培养/
+运营/
+文档规范/
+寒假任务相关知识/
+当前任务.md
+备忘录.md
+未命名.md
+
+# AI 产物
+**/AGENTS.md
+**/*_Prompt.md
+**/chatgpt.md
+
+# 写作中的长稿：仅本地 Obsidian 存在，不进公开仓库
+Chassis/底盘解算.md
