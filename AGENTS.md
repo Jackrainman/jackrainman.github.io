@@ -30,10 +30,19 @@ PyPI 官方源为 `--index-url https://pypi.org/simple`（默认镜像在部分�
 5. 代码块开栏必须带语言标注。
 6. 改文档先看 `.agents/skills/mkdocs-docs/SKILL.md`。
 
-## 已知待办（勿在无关任务中顺手改）
+## 本仓库现状（新建，勿按旧站假设行事）
 
-- `docs/zh/Chassis/底盘解算.md` 是 Obsidian 在写的长稿：已 `exclude_docs` + 脱离 git 追踪，
-  写完要上线时需 `git add -f` 并重新注册 nav
-- `mkdocs.yml` 的 `giscus.category_id` 是占位值 `DIC_kwD...`，评论区不可用
-- 66 个代码块缺语言标注
+正文尚未开始，只有模板骨架。以下每一项都是有意为之，不是待修的疏漏：
+
+- `mkdocs.yml` 的 `site_url` 与 `edit_uri` 指向 `web_next`；**仓库最终改名为
+  `Jackrainman.github.io` 时这两行必须同步改**
+- 未收录 17MB 的 `NotoSansSC-VariableFont_wght.ttf`，中文当前回退系统字体。
+  要复刻旧站观感需补字体或做子集化，别直接整包塞进首次提交
+- 首页 `landing-actions` 是空槽：内容页写出来后才有 CTA 可指
+- `giscus.category_id` 仍是占位值 `DIC_kwD...`，评论区不可用（需你去 giscus.app 取）
+- `.gitignore` 里的 `培养/`、`运营/` 等目录尚不存在，是给 Obsidian 草稿预留的拦截，
+  不要当作冗余删掉
+
+新增页面时的顺序：写文件 → 进 `nav:` → 跑 `check_docs.py` → 跑 `mkdocs build --strict`。
+`--strict` 查不出图片缺失和 HTML `href` 死链，只有 `check_docs.py` 会查。
 - git 历史仍含已删的队内内容（`培养/`、`运营/` 等），未被改写
