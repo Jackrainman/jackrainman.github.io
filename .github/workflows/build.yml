@@ -6,15 +6,24 @@ on:
       - main
   pull_request:
 
-# 必须添加这个权限块，否则 GitHub Actions 无法发布网页
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Pages 写入与 OIDC 只授给部署 job，PR 构建不继承这两个权限
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -24,14 +33,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          # 确保 requirements.txt 里写了 mkdocs-material
+        run: pip install -r requirements.txt
 
       - name: Build site
         run: mkdocs build
 
-      # --- 以下是针对你截图设置的正确部署方式 ---
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
