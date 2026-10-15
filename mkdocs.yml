@@ -91,12 +91,13 @@ exclude_docs: |
 
 extra:
   generator: false
-  # --- 新增 giscus 配置 ---
+  # 评论绑定：真正生效的是 overrides/partials/comments.html（它替换了 Material 的同名模板）
+  # 本块与之必须保持一致；check_docs.py 会比对两处。category_id 需在新仓库开 Discussions 后从 giscus.app 取
   comments:
     provider: giscus
     options:
-      repo: Jackrainman/Jackrainman.github.io
-      repo_id: DIC_kwDOQ9R6kc4C1xkk
+      repo: Jackrainman/jackrainman.github.io
+      repo_id: R_kgDOVJTdUA
       category: Announcements
       category_id: DIC_kwD...         # 填入你在 giscus.app 查到的 ID
       mapping: pathname
