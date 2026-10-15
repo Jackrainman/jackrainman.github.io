@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""文档站静态体检。mkdocs --strict 不检查图片存在性与 AI 残留，本脚本补齐。
+"""文档站静态体检。mkdocs --strict 不检查图片存在性、HTML 死链、AI 残留、
+站点地址与仓库是否匹配、评论绑定是否指向本仓库，本脚本补齐。
 
 用法: python .agents/scripts/check_docs.py [--relaxed]
---relaxed 只报错不警告（用于 CI 早期阶段）。
+--relaxed 只报告，不返回非零退出码。
 """
 import argparse
 import fnmatch
 import re
+import subprocess
 import sys
 import urllib.parse
 from pathlib import Path
@@ -175,6 +177,83 @@ def check_fence_languages(docs: Path):
     return total
 
 
+def remote_slug(root: Path):
+    """origin 指向的 (owner, repo)。git 不可用或没有 origin 时返回 None。"""
+    try:
+        out = subprocess.run(["git", "-C", str(root), "remote", "get-url", "origin"],
+                             capture_output=True, text=True, timeout=5)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if out.returncode:
+        return None
+    url = out.stdout.strip()
+    tail = url.split("://", 1)[-1] if "://" in url else url.replace(":", "/")
+    if tail.endswith(".git"):
+        tail = tail[:-4]
+    parts = [p for p in tail.split("/") if p]
+    return (parts[-2], parts[-1]) if len(parts) >= 2 else None
+
+
+def check_site_address(root: Path, mkdocs_yml: Path):
+    """site_url 必须等于 Pages 的实际根路径。
+
+    留空时 sitemap 每条 <loc> 变成 None 前缀（旧站带病跑了九个月，--strict 全程无警告）；
+    仓库改名后残留旧名，则整站索引指向 404。
+    """
+    problems = []
+    m = re.search(r"^site_url:\s*(\S*)\s*$",
+                  mkdocs_yml.read_text(encoding="utf-8"), re.M)
+    url = m.group(1).strip("'\"") if m else ""
+    if not url:
+        return ["site_url 为空 —— sitemap 的 <loc> 会全部变成 None 前缀"]
+    slug = remote_slug(root)
+    if not slug:
+        return problems
+    owner, repo = slug
+    base = f"https://{owner.lower()}.github.io"
+    expected = f"{base}/" if repo.lower() == f"{owner.lower()}.github.io" else f"{base}/{repo}/"
+    if url.rstrip("/") + "/" != expected:
+        problems.append(f"site_url={url}，仓库实际地址是 {expected}")
+    return problems
+
+
+def check_giscus_drift(root: Path, mkdocs_yml: Path):
+    """评论区的生效源是 overrides/partials/comments.html，mkdocs.yml 的 extra 只是备忘。
+
+    两处不一致会误导改配置的人，属阻塞；两处一致但仍是占位值，属已知待办，不阻塞。
+    """
+    tpl = root / "overrides/partials/comments.html"
+    if not tpl.exists():
+        return [], []
+    problems, notes = [], []
+    html = tpl.read_text(encoding="utf-8", errors="replace")
+    got = dict(re.findall(r'data-(repo|repo-id|category|category-id)="([^"]*)"', html))
+    slug = remote_slug(root)
+    if slug and got.get("repo"):
+        want = f"{slug[0]}/{slug[1]}"
+        if got["repo"].lower() != want.lower():
+            problems.append(
+                f"comments.html 绑定仓库 {got['repo']}，本仓库是 {want}")
+    cfg_block = re.search(r"^  comments:\n((?: {4,}[^\n]+\n)+)",
+                          mkdocs_yml.read_text(encoding="utf-8"), re.M)
+    yml = {k: v.split("#", 1)[0].strip().strip("'\"")
+           for k, v in re.findall(
+               r"^ +(repo|repo_id|category|category_id): *(.+?)\s*$",
+               cfg_block.group(1), re.M)} if cfg_block else {}
+    pairs = {"repo": "repo", "repo-id": "repo_id", "category": "category",
+             "category-id": "category_id"}
+    for html_key, yml_key in pairs.items():
+        a, b = got.get(html_key, ""), yml.get(yml_key, "")
+        if not (a and b):
+            continue
+        same = a.lower() == b.lower() if yml_key == "repo" else a == b
+        if not same:
+            problems.append(f"giscus {yml_key} 两处不一致：comments.html={a} mkdocs.yml={b}")
+    for val in sorted({v for v in (*yml.values(), *got.values()) if "..." in v}):
+        notes.append(f"giscus 占位值 {val} —— 评论区不可用")
+    return problems, notes
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--relaxed", action="store_true", help="只报告，不返回非零退出码")
@@ -186,6 +265,8 @@ def main():
     broken = check_links(docs, pats) + check_html_refs(docs, pats)
     residue = check_residue(docs, pats)
     orphans, missing = check_nav(docs, cfg)
+    address = check_site_address(root, cfg)
+    giscus, notes = check_giscus_drift(root, cfg)
     no_lang = check_fence_languages(docs)
 
     print(f"文档体检 {root.name}  (md: {len(list(md_files(docs)))}, "
@@ -195,6 +276,8 @@ def main():
         ("AI 生成残留进入已发布页面", residue),
         ("nav 缺失（文件存在但未列入导航）", orphans),
         ("nav 引用不存在的文件", missing),
+        ("站点地址与仓库不符", address),
+        ("评论区配置两处不一致", giscus),
     ):
         print(f"\n[{title}] {len(items)}")
         for it in items[:15]:
@@ -203,8 +286,10 @@ def main():
             print(f"  ... 另有 {len(items) - 15} 条")
 
     print(f"\n[无语言标注的代码块] {no_lang}（影响高亮，非阻塞）")
+    for note in notes:
+        print(f"[待办] {note}（非阻塞）")
 
-    hard = len(broken) + len(residue) + len(missing)
+    hard = len(broken) + len(residue) + len(missing) + len(address) + len(giscus)
     if not hard:
         print("\nOK")
         return 0
