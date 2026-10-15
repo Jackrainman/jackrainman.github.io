@@ -1,8 +1,8 @@
 site_name: Web_of_Jackrainman
 site_description: Jackrainman 文档站
-site_url: https://jackrainman.github.io/web_next/
+site_url: https://jackrainman.github.io/
 repo_url:
-edit_uri: https://github.com/Jackrainman/web_next/edit/main/docs/
+edit_uri: https://github.com/Jackrainman/jackrainman.github.io/edit/main/docs/
 
 theme:
   name: material

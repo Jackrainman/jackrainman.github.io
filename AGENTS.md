@@ -34,15 +34,16 @@ PyPI 官方源为 `--index-url https://pypi.org/simple`（默认镜像在部分�
 
 正文尚未开始，只有模板骨架。以下每一项都是有意为之，不是待修的疏漏：
 
-- `mkdocs.yml` 的 `site_url` 与 `edit_uri` 指向 `web_next`；**仓库最终改名为
-  `Jackrainman.github.io` 时这两行必须同步改**
+- 仓库即 `Jackrainman/jackrainman.github.io`，站点在根路径 `https://jackrainman.github.io/`。
+  旧的 `web_next` 名已弃用，`site_url` 与 `edit_uri` 已随之改正
 - 未收录 17MB 的 `NotoSansSC-VariableFont_wght.ttf`，中文当前回退系统字体。
   要复刻旧站观感需补字体或做子集化，别直接整包塞进首次提交
 - 首页 `landing-actions` 是空槽：内容页写出来后才有 CTA 可指
 - `giscus.category_id` 仍是占位值 `DIC_kwD...`，评论区不可用（需你去 giscus.app 取）
 - `.gitignore` 里的 `培养/`、`运营/` 等目录尚不存在，是给 Obsidian 草稿预留的拦截，
   不要当作冗余删掉
+- 队内材料与旧正文在私有归档库 `Jackrainman/Jackrainman.github.io_archive`，
+  本仓库历史里没有它们，不要从那边整仓拷贝
 
 新增页面时的顺序：写文件 → 进 `nav:` → 跑 `check_docs.py` → 跑 `mkdocs build --strict`。
 `--strict` 查不出图片缺失和 HTML `href` 死链，只有 `check_docs.py` 会查。
-- git 历史仍含已删的队内内容（`培养/`、`运营/` 等），未被改写
