@@ -15,7 +15,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # 发布门：断链 / AI 残留 / 站点地址与仓库不符 / 评论绑定漂移。
+  # mkdocs --strict 查不到这些，历史上它们都是带着绿灯上线的。
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 文档体检
+        run: python .agents/scripts/check_docs.py
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 严格构建
+        run: mkdocs build --strict
+
   deploy:
+    needs: lint
     runs-on: ubuntu-latest
     # Pages 写入与 OIDC 只授给部署 job，PR 构建不继承这两个权限
     permissions:
