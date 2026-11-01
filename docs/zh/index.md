@@ -27,18 +27,20 @@ comments: false
 </div>
 
 <div class="landing-actions">
+  <a href="ControlTheory/00-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/" class="md-button md-button--primary landing-cta">开始阅读指引 →</a>
+  <a href="ControlTheory/08-LADRC%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97/" class="md-button landing-cta">LADRC 实战</a>
 </div>
 
 </div>
 
 <div class="landing-stats" markdown>
   <div class="landing-stat">
-    <span class="landing-stat-value">5</span>
-    <span class="landing-stat-label">核心模块</span>
+    <span class="landing-stat-value">8</span>
+    <span class="landing-stat-label">技术主题</span>
   </div>
   <div class="landing-stat">
-    <span class="landing-stat-value">40+</span>
-    <span class="landing-stat-label">专题文档</span>
+    <span class="landing-stat-value">43</span>
+    <span class="landing-stat-label">公开技术文档</span>
   </div>
   <div class="landing-stat">
     <span class="landing-stat-value">3</span>
@@ -62,6 +64,8 @@ comments: false
 
     以 STM32 工程为载体，整理外设驱动、FreeRTOS 任务调度和系统组织方式。
 
+    [:material-arrow-right: STM32F1 学习文档](单片机/学习文档.md) ·
+    [:material-arrow-right: FreeRTOS 调度](FreeRTOS/01_调度.md)
 
 -   :material-lan-connect: __总线与驱动__ · CAN & Motor
 
@@ -69,6 +73,8 @@ comments: false
 
     汇总底层 CAN 总线通信原理、电机驱动封装规范以及接口层的设计思路。
 
+    [:material-arrow-right: CAN 总线基础](CAN/CAN总线基础.md) ·
+    [:material-arrow-right: 电机驱动接口详解](Motor/电机驱动代码详细讲解.md)
 
 -   :material-axis-arrow: __运动与解算__ · Chassis & Kinematics
 
@@ -76,6 +82,8 @@ comments: false
 
     聚焦各类底盘的运动学解算模型、坐标系转换以及从期望速度到轮速的映射。
 
+    [:material-arrow-right: 底盘正解算](Chassis/底盘正解算.md) ·
+    [:material-arrow-right: 舵轮坐标约定](Chassis/steering_wheel与底盘全链路坐标轴约定.md)
 
 -   :material-school-outline: __算法与控制__ · Control Theory
 
@@ -83,6 +91,7 @@ comments: false
 
     从系统的分层认知、基础 PID 调节到自抗扰控制（ADRC）的完整主线脉络。
 
+    [:material-arrow-right: 学习路径指南](ControlTheory/00-学习路径指南.md)
 
 </div>
 
@@ -98,6 +107,7 @@ comments: false
 
     突破传统 PID 的局限，面向战队实际开发场景，强调 LADRC 的调参顺序、坑点与工程上的可落地性。
 
+    [:material-arrow-right-bold-circle: 立即阅读](ControlTheory/08-LADRC实战指南.md)
 
 -   :material-chart-bell-curve-cumulative: __速度规划与平滑理论__
 
@@ -105,9 +115,11 @@ comments: false
 
     解决机器人运动过程中的突变与抖动问题。梳理速度规划的数学建模、加减速曲线平滑策略及代码实现。
 
+    [:material-arrow-right-bold-circle: 速度规划与卷积](SpeedPlan/速度规划+卷积.md) ·
+    [:material-arrow-right-bold-circle: 微分追踪器](SpeedPlan/TD.md)
 
 </div>
 
 <div class="landing-tip" markdown>
-:material-lightbulb-on-outline: **提示** &nbsp;·&nbsp; 站点还保留了代码规范与历史归档等内容。这些内容不在首页展示，可通过左侧导航栏和顶部搜索框进行访问。
+:material-lightbulb-on-outline: **提示** &nbsp;·&nbsp; 未完成草稿与私人笔记只保留在本地 Obsidian；公开技术文章可通过左侧导航栏和顶部搜索框访问。
 </div>

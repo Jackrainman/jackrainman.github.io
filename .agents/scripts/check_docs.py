@@ -132,8 +132,9 @@ def check_html_refs(docs: Path, pats):
                                    "data:", "javascript:", "tel:")):
                     continue
                 stem = url.rstrip("/")
-                cands = [docs / stem, docs / stem / "index.md",
-                         p.parent / url, p.parent / stem / "index.md"]
+                cands = [docs / stem, docs / stem / "index.md", docs / f"{stem}.md",
+                         p.parent / url, p.parent / stem / "index.md",
+                         p.parent / f"{stem}.md"]
                 if not any(c.exists() for c in cands):
                     errors.append(f"{rel}:{lineno} [HTML 引用] {m.group(1)}")
     return errors

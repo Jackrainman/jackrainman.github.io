@@ -4,7 +4,7 @@
     "title": "从私有归档站逐批迁移公开技术文章与所需资源",
     "source": "D:/01_Workspace/04_MyProjects/Website/Web_of_Jackrainman_archive",
     "source_access": "read-only",
-    "status": "in_progress"
+    "status": "local_verified"
   },
   "rules": [
     "除根 AGENTS.md 外，AI 配置、技能、脚本和迁移记录只放 .agents/",
@@ -12,11 +12,16 @@
     "逐页检查公开性，复制正文及其实际引用资源，保持原相对路径",
     "每批迁移后更新 manifest.csv，并运行文档检查与 mkdocs build --strict"
   ],
+  "completed": [
+    "盘点 45 篇旧站技术文章并登记迁移清单",
+    "复制本地 .obsidian 配置，确认相对链接和附件路径兼容且不会提交",
+    "迁移 43 篇公开技术文章与配套资源，恢复导航和首页入口",
+    "将 1 篇未完成文章留在本地草稿，排除 1 篇私人长稿",
+    "清理 AI 残留，补齐代码块语言，更新首页统计与 README 状态",
+    "文档体检与 mkdocs build --strict 本地通过"
+  ],
   "todo": [
-    "盘点技术文章并登记迁移清单",
-    "检查并复制本地 .obsidian 配置，确认附件路径兼容",
-    "迁移公开技术文章与引用资源，更新 mkdocs.yml 导航",
-    "清理断链、AI 残留和代码块问题，更新首页统计与 README 状态",
-    "运行本地与线上发布验收"
+    "审查并提交本批技术内容，推送后运行 GitHub Actions 与线上验收",
+    "后续完善本地速度规划草稿，再单独审查公开"
   ]
 }

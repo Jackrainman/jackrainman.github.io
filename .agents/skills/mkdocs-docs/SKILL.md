@@ -83,12 +83,11 @@ mkdocs build --strict                     # 官方检查
 两者都要跑，非零不得提交。`--strict` 只查 MkDocs 自己认识的引用；
 `check_docs.py` 补的是图片存在性、HTML 死链、AI 残留、站点地址与仓库是否匹配。
 
-## 首页是模板带来的，数字会过期
+## 首页数字与真实内容保持一致
 
-`docs/zh/index.md` 的 `landing-stats`（"40+ 专题文档"等）和 `landing-chips`
-沿用旧站，正文尚未开始，与站点实际内容不符；`landing-actions` 是空槽。
-首批内容上线时：要么改数字，要么补页面，并在有真实 CTA 目标后再填 `landing-actions`
-（填了就必须是活链接，否则 `check_html_refs` 会拦）。
+`docs/zh/index.md` 的 `landing-stats` 必须与公开导航中的实际主题、文章数量一致；
+每批新增、移动或撤下页面后同步更新。`landing-actions` 只放真实内容页的活链接，
+新增或改路径后必须运行 `check_html_refs` 所在的文档体检。
 
 ## 不要做的事
 

@@ -38,12 +38,11 @@ mkdocs serve                           # 本地预览
 
 ## 现状
 
-正文尚未开始，以下都是有意为之，不是待修：
+首批 43 篇技术文章已迁入公开导航，覆盖控制理论、底盘、速度规划、电机、CAN、FreeRTOS、STM32CubeMX 与单片机。未完成文章只放本地 `_Drafts/`，不为了凑数量公开。
 
-- `nav` 只有 Home；首页 hero 的 stats/chips 沿用旧站数字，与当前内容不符，`landing-actions` 是空槽。
-- `docs/index.md` 与 `docs/zh/index.md` 内容相同且都映射到 `/`，后者胜出，前者不产出页面。
+- `docs/index.md` 与 `docs/zh/index.md` 内容相同且都映射到 `/`，后者胜出，前者不产出页面；改首页只改后者。
+- `docs/zh/.obsidian/` 已从旧站复制为本地配置，两层 `.gitignore` 均已拦截，不得提交。
 - 未收录 17MB 的 `NotoSansSC-VariableFont_wght.ttf`，中文回退系统字体；要补先做子集化。
 - giscus `category_id` 是占位值，仓库未开 Discussions，评论区不可用。
 - `.gitignore` 里指向 `培养/`、`运营/` 等不存在目录的规则是给本地草稿预留的拦截，别当冗余删。
-- 队内材料与旧正文在私有归档库 `Jackrainman/Jackrainman.github.io_archive`；
-  本仓库历史里没有它们，回捞内容逐页人工过一遍，不要整仓拷贝。
+- 队内材料与旧正文在私有归档库 `Jackrainman/Jackrainman.github.io_archive`；继续回捞时逐页人工审查，不整仓拷贝。

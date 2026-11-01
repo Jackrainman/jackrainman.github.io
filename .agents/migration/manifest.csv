@@ -1,1 +1,46 @@
 source_path,target_path,classification,status,notes
+docs/zh/CAN/CAN_List.md,CAN/CAN_List.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/CAN/CAN_List代码.md,CAN/CAN_List代码.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/CAN/CAN总线基础.md,CAN/CAN总线基础.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Chassis/01_写在前面.md,Chassis/01_写在前面.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Chassis/steering_wheel与底盘全链路坐标轴约定.md,Chassis/steering_wheel与底盘全链路坐标轴约定.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Chassis/底盘正解算.md,Chassis/底盘正解算.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Chassis/底盘解算.md,,private_long_form,skipped_private,私人长稿及专用配图不迁移
+docs/zh/ControlTheory/00-学习路径指南.md,ControlTheory/00-学习路径指南.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/01-重新理解控制论.md,ControlTheory/01-重新理解控制论.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/02-机器人控制系统的分层设计与算法选型方法.md,ControlTheory/02-机器人控制系统的分层设计与算法选型方法.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/03-PID控制算法原理与应用.md,ControlTheory/03-PID控制算法原理与应用.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/04-控制理论基础.md,ControlTheory/04-控制理论基础.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/05-何谓自抗扰.md,ControlTheory/05-何谓自抗扰.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/06-LADRC算法详解.md,ControlTheory/06-LADRC算法详解.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/07-LADRC代码实战.md,ControlTheory/07-LADRC代码实战.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/08-LADRC实战指南.md,ControlTheory/08-LADRC实战指南.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/09-高级控制理论.md,ControlTheory/09-高级控制理论.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/10-MCU与上位机的控制分层.md,ControlTheory/10-MCU与上位机的控制分层.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/11-现代控制与最优控制导论.md,ControlTheory/11-现代控制与最优控制导论.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/12-智能控制与强化学习导论.md,ControlTheory/12-智能控制与强化学习导论.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/PID，前馈，TD.md,ControlTheory/PID，前馈，TD.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/学习路径_个人版.md,ControlTheory/学习路径_个人版.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/学习路径_研究总稿.md,ControlTheory/学习路径_研究总稿.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/ControlTheory/自适应前馈.md,ControlTheory/自适应前馈.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/FreeRTOS/01_调度.md,FreeRTOS/01_调度.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/AK-Motor/README.md,Motor/AK-Motor/README.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/AK-Motor/User_Guider.md,Motor/AK-Motor/User_Guider.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/DJI-Motor/README.md,Motor/DJI-Motor/README.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/VESC/README.md,Motor/VESC/README.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/大疆驱动讲解.md,Motor/大疆驱动讲解.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/电机.md,Motor/电机.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/Motor/电机驱动代码详细讲解.md,Motor/电机驱动代码详细讲解.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/STM32CubeMX/02_时钟树.md,STM32CubeMX/02_时钟树.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/SpeedPlan/00-写在前面.md,SpeedPlan/00-写在前面.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/SpeedPlan/TD.md,SpeedPlan/TD.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/SpeedPlan/速度规划+卷积.md,SpeedPlan/速度规划+卷积.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/SpeedPlan/速度规划-理论.md,_Drafts/SpeedPlan/速度规划-理论.md,incomplete_technical,local_draft,含未完成占位内容，仅保留在本地 _Drafts
+docs/zh/单片机/00_寄存器.md,单片机/00_寄存器.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/01_GPIO.md,单片机/01_GPIO.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/02_SWD烧录.md,单片机/02_SWD烧录.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/03_USART.md,单片机/03_USART.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/08_DMA.md,单片机/08_DMA.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/FLASH 模拟 EEPROM.md,单片机/FLASH 模拟 EEPROM.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/SPI FLASH.md,单片机/SPI FLASH.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
+docs/zh/单片机/学习文档.md,单片机/学习文档.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查

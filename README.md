@@ -8,7 +8,7 @@
 
 ![Deploy](https://img.shields.io/github/actions/workflow/status/Jackrainman/jackrainman.github.io/build.yml?label=pages%20deploy)
 ![Site](https://img.shields.io/badge/live-jackrainman.github.io-brightgreen)
-![Stage](https://img.shields.io/badge/stage-骨架%2F重写中-yellow)
+![Stage](https://img.shields.io/badge/stage-%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB%E4%B8%AD-orange)
 ![Engine](https://img.shields.io/badge/MkDocs%20Material-9.7.7-blue)
 ![Lang](https://img.shields.io/badge/lang-zh-informational)
 
@@ -19,8 +19,9 @@
 个人技术站点，MkDocs Material 构建，GitHub Pages 托管在**用户站根路径**
 `https://jackrainman.github.io/`。仓库是**公开的**，提交即永久。
 
-当前状态：**模板骨架**。写作流程、校验门和部署链路已经就位，正文正在从零重写——
-旧站内容因涉队内材料归档进了私有仓库，两边靠不上，所以你在站上暂时只看到首页。
+当前状态：**首批技术内容已迁移**。公开导航现有 **43 篇技术文章、8 个技术主题**，
+保留旧站原有的学习路径与页面结构。私人长稿和未完成文章只留在本地 Obsidian 草稿区，
+不进入公开仓库；写作流程、校验门和 Pages 部署链路均已通过本地验证。
 
 ---
 
@@ -29,6 +30,8 @@
 | 路径 | 作用 |
 |---|---|
 | `docs/zh/<主题>/` | 正文。同级 `Pictures/<页面名>/` 放该页配图 |
+| `docs/zh/.obsidian/` | 本地 Obsidian 配置；已从旧站复制，两层 `.gitignore` 拦截，不提交 |
+| `docs/zh/_Drafts/` | 本地未完成草稿；不构建、不提交 |
 | `docs/zh/index.md` | 首页（真正渲染到 `/` 的是它，不是 `docs/index.md`） |
 | `mkdocs.yml` | 主题、插件、`exclude_docs`、`nav` |
 | `.agents/` | 全部 AI 产物：技能 `skills/` + 脚本 `scripts/` |
@@ -47,7 +50,8 @@ pip install -r requirements.txt --index-url https://pypi.org/simple
 mkdocs serve
 ```
 
-浏览器打开 <http://127.0.0.1:8000>。默认 pip 镜像在部分环境不可达，所以要显式指定官方源；
+浏览器打开 <http://127.0.0.1:8000>。Windows PowerShell 使用 `.venv\Scripts\Activate.ps1`
+激活虚拟环境。默认 pip 镜像在部分环境不可达，所以要显式指定官方源；
 依赖全部按本地实测构建锁死版本，`mkdocs 2.0` 会移除插件系统，不锁版本会让 CI 某次重装直接崩。
 
 改完之后：
@@ -146,21 +150,22 @@ admonition、任务列表、代码复制与行号锚点、`mdx_truly_sane_lists`
 | `.agents/skills/repo-hygiene` | 发布边界：两道闸、公开历史处置顺序、迁移与新仓库种子规则 |
 | `.agents/scripts/check_docs.py` | 发布前体检门（纯标准库，无依赖） |
 | `.agents/scripts/fix_code_blocks.py` | 批量补代码块语言标注，判不出的只报告不瞎猜 |
+| `.agents/migration/` | 轻量迁移 harness：逐页清单、当前任务与公开性状态 |
 
 ---
 
 ## 已知待办
 
-- 🟡 **正文**——主题目录尚未建立，首页 stats 仍是旧站数字。
+- 🟡 **剩余草稿**——`速度规划-理论.md` 含未完成内容，仅保留在本地 `_Drafts/`，完善后再公开。
 - 🟡 **中文字体**——17MB 的 Noto Sans SC 可变字体未收录，观感与旧站有差；补入前先子集化。
 - 🔴 **评论区**——仓库未开 Discussions，`category_id` 仍是占位值，giscus 不可用。
-- ⚪ **首页 CTA**——`landing-actions` 是空槽，等有真实内容页可指再填。
+- ⚪ **视觉验收**——内容迁移已完成，后续再做桌面端与移动端页面细节检查。
 
 ## 与旧站的关系
 
 旧仓库 `Jackrainman/Jackrainman.github.io` 已改名为私有归档库
 `Jackrainman/Jackrainman.github.io_archive`。本仓库从零建立历史，不含队内材料；
-往回捞内容需要逐页人工过一遍再放，不批量搬。
+首批技术文章已按原路径迁回，私人长稿与未完成内容仍不进入公开历史。
 
 ---
 
