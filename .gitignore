@@ -8,11 +8,8 @@ venv/
 __pycache__/
 *.py[cod]
 
-# ---- AI 工具本地状态 ----
-# 技能、脚本、提示词统一放 .agents/（纳入版本库）；工具私有状态不提交
-.opencode/
-.claude/settings.local.json
-.qoder/
+# ---- AI 项目资产 ----
+# 技能、脚本、提示词与迁移记录统一放 .agents/（纳入版本库）
 
 # 禁止 AI 产物落进正文目录或仓库根
 docs/**/AGENTS.md

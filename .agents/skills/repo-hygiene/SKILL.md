@@ -64,10 +64,10 @@ git grep -nEI '(ghp_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH) PRIVATE
 
 ## AI 产物归置
 
-- 一律在 `.agents/` 下：`skills/<名>/SKILL.md`、`scripts/*.py`、提示词与笔记。
-  不放仓库根目录，不放 `docs/`（会被构建进站点）。
-- 工具原生配置（`.claude/settings.json`、`.opencode/` 等）留在工具要求的路径，
-  但只放权限开关，且本地状态文件进 `.gitignore`。
+- 根 `AGENTS.md` 是唯一例外；其余一律在 `.agents/` 下：`skills/<名>/SKILL.md`、
+  `scripts/*.py`、提示词、迁移记录与笔记。不放 `docs/`（会被构建进站点）。
+- 不新增 `.claude/`、`.codex/`、`.opencode/` 等工具目录；旧项目中的这些目录只作只读参考，
+  需要沿用的内容整理后迁入 `.agents/`。
 - `docs/**/AGENTS.md`、`docs/**/*_Prompt.md`、`docs/**/chatgpt.md` 已三重拦截；
   新种类的 AI 文件要同时补 `exclude_docs` 与 `.gitignore`。
 - 提交前清干净：占位符、TODO、配图脚本清单、"以下是本文即将介绍的内容"这类生成说明。

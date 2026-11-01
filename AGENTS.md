@@ -22,9 +22,15 @@ mkdocs serve                           # 本地预览
 | 改 `mkdocs.yml`、workflow、发布验收 | `.agents/skills/pages-deploy/SKILL.md` |
 | 提交、草稿拦截、仓库迁移、泄露排查 | `.agents/skills/repo-hygiene/SKILL.md` |
 
+## 旧站迁移
+
+- 开局读 `.agents/migration/todo.json`，逐页状态登记到同目录 `manifest.csv`。
+- 旧仓库只读；只迁移审查通过的技术文章及其引用资源，不复制历史、私人区或草稿。
+- 每批完成后运行文档检查和 `mkdocs build --strict`，再更新任务状态。
+
 ## 硬规则
 
-1. AI 产物（技能、脚本、提示词、笔记）只进 `.agents/`，不落 `docs/` 也不落仓库根。
+1. 除根 `AGENTS.md` 外，AI 产物（技能、脚本、提示词、笔记）只进 `.agents/`，不落 `docs/` 也不落仓库根；不新增 `.claude`、`.codex`、`.opencode` 等目录。
 2. **不上线** = `exclude_docs` + 不进 `nav`；**不公开** = 根 `.gitignore` **且** `docs/zh/.gitignore`。
    两道闸都要过——`exclude_docs` 挡不住 `blob/main/...` 直读。
 3. 已发布页面不留 AI 残留（占位符 / TODO / 配图脚本清单）；代码块开栏必须带语言。

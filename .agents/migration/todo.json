@@ -1,0 +1,22 @@
+{
+  "current": {
+    "id": "MIGRATE-TECHNICAL-DOCS",
+    "title": "从私有归档站逐批迁移公开技术文章与所需资源",
+    "source": "D:/01_Workspace/04_MyProjects/Website/Web_of_Jackrainman_archive",
+    "source_access": "read-only",
+    "status": "in_progress"
+  },
+  "rules": [
+    "除根 AGENTS.md 外，AI 配置、技能、脚本和迁移记录只放 .agents/",
+    "只复制技术主题，不复制旧 Git 历史、私人区、草稿、Obsidian 配置或队内材料",
+    "逐页检查公开性，复制正文及其实际引用资源，保持原相对路径",
+    "每批迁移后更新 manifest.csv，并运行文档检查与 mkdocs build --strict"
+  ],
+  "todo": [
+    "盘点技术文章并登记迁移清单",
+    "检查并复制本地 .obsidian 配置，确认附件路径兼容",
+    "迁移公开技术文章与引用资源，更新 mkdocs.yml 导航",
+    "清理断链、AI 残留和代码块问题，更新首页统计与 README 状态",
+    "运行本地与线上发布验收"
+  ]
+}
