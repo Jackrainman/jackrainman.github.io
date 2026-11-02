@@ -44,5 +44,6 @@ mkdocs serve                           # 本地预览
 - `docs/zh/.obsidian/` 已从旧站复制为本地配置，两层 `.gitignore` 均已拦截，不得提交。
 - 未收录 17MB 的 `NotoSansSC-VariableFont_wght.ttf`，中文回退系统字体；要补先做子集化。
 - giscus `category_id` 是占位值，仓库未开 Discussions，评论区不可用。
+- 《底盘解算》旧私人长稿不公开，公开版待重写后单独审查。
 - `.gitignore` 里指向 `培养/`、`运营/` 等不存在目录的规则是给本地草稿预留的拦截，别当冗余删。
 - 队内材料与旧正文在私有归档库 `Jackrainman/Jackrainman.github.io_archive`；继续回捞时逐页人工审查，不整仓拷贝。

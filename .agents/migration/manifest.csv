@@ -1,11 +1,12 @@
 source_path,target_path,classification,status,notes
+docs/zh/About/index.md,About/index.md,public_site_info,migrated,恢复并更新为公开文章链接和当前发布边界
 docs/zh/CAN/CAN_List.md,CAN/CAN_List.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/CAN/CAN_List代码.md,CAN/CAN_List代码.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/CAN/CAN总线基础.md,CAN/CAN总线基础.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/Chassis/01_写在前面.md,Chassis/01_写在前面.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/Chassis/steering_wheel与底盘全链路坐标轴约定.md,Chassis/steering_wheel与底盘全链路坐标轴约定.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/Chassis/底盘正解算.md,Chassis/底盘正解算.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
-docs/zh/Chassis/底盘解算.md,,private_long_form,skipped_private,私人长稿及专用配图不迁移
+docs/zh/Chassis/底盘解算.md,,private_long_form,rewrite_planned,旧私人长稿及专用配图不迁移；计划重写公开版后单独审查
 docs/zh/ControlTheory/00-学习路径指南.md,ControlTheory/00-学习路径指南.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/ControlTheory/01-重新理解控制论.md,ControlTheory/01-重新理解控制论.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
 docs/zh/ControlTheory/02-机器人控制系统的分层设计与算法选型方法.md,ControlTheory/02-机器人控制系统的分层设计与算法选型方法.md,public_technical,migrated,保持原路径，已纳入导航并通过本地检查
