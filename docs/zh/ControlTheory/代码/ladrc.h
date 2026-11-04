@@ -2,8 +2,8 @@
  * @file    ladrc.h
  * @author  Jackrainman
  * @brief   LADRC算法库（包含一阶和二阶LADRC）
- * @version 3.1
- * @date    2026-02-07
+ * @version 3.2
+ * @date    2026-11-04
  ******************************************************************************
  *    Date    | Version |   Author    | Version Info
  * -----------+---------+-------------+----------------------------------------
@@ -12,6 +12,7 @@
  *           |         |             | 一阶LADRC: 二阶ESO; 二阶LADRC: 三阶ESO
  * 2026-02-07 |   3.0   | Jackrainman | 重构：TD与LADRC解耦，使用组合模式
  * 2026-02-07 |   3.1   | Jackrainman | 重构：参数固化模式，调参时h0改为滤波因子N
+ * 2026-11-04 |   3.2   | Jackrainman | 修复TD状态切换、参数防护与二阶参考速度前馈；停用未验证的k_aw回算
  */
 
 #ifndef __LADRC_H
@@ -55,7 +56,7 @@ typedef struct {
  * @brief TD 初始化 - 参数固化模式
  *
  * @param td      TD结构体指针
- * @param r       快速跟踪因子，决定跟踪速度
+ * @param r       快速跟踪因子，决定跟踪速度；小于等于0表示禁用并透传
  * @param dt      固定采样周期(秒) - RTOS任务周期，将固化到结构体中
  * @param n       滤波因子(无量纲) - 建议值1~5，值越大滤波越强但延迟越大
  * @param max_x2  最大速度限制（0表示不限制）
@@ -79,8 +80,8 @@ void td_reset(td_t *td, float init_value);
  * @param target  目标值
  * @return        跟踪输出x1（平滑后的目标值）
  *
- * @note 此版本使用结构体中固化的采样周期td->h，不再接受外部传入的dt
- *       适用于RTOS固定频率调用的场景，消除时间抖动对积分的影响
+ * @note 此版本使用结构体中固化的名义采样周期td->h，不再接受外部传入的dt。
+ *       固定dt不能消除实际任务调度抖动，调用方仍需保证周期与dt匹配。
  */
 float td_update(td_t *td, float target);
 
@@ -113,9 +114,9 @@ typedef struct {
     /* 输出限制 */
     float max_output;   /**< 最大输出限制 */
 
-    /* 抗积分饱和 */
-    float k_aw;     /**< 抗积分饱和增益 */
-    float pre_out;  /**< 上一时刻输出 */
+    /* 抗饱和兼容字段（当前未启用回算） */
+    float k_aw;     /**< 兼容保留的抗饱和增益，不参与当前控制律 */
+    float pre_out;  /**< 上一拍实际限幅输出，用于本拍LESO更新 */
 
     /* 采样周期 */
     float dt;       /**< 采样周期(秒) */
@@ -137,8 +138,8 @@ typedef struct {
  * @param kp 比例增益
  * @param b 控制增益
  * @param dt 采样周期(秒) - 固定采样周期，将固化到结构体中
- * @param k_aw 抗积分饱和增益(0表示不使用)
- * @param td_r TD快速跟踪因子(0表示不使用TD)
+ * @param k_aw 兼容保留的抗饱和增益(当前未启用回算)
+ * @param td_r TD快速跟踪因子(小于等于0表示不使用TD)
  * @param td_n TD滤波因子(无量纲) - 建议值1~5，值越大滤波越强但延迟越大
  * @param td_max_x2 TD最大速度限制(0表示不限制)
  */
@@ -155,8 +156,8 @@ void first_order_ladrc_init(first_order_ladrc_t *fladrc, float max_output,
  * @param kp 比例增益
  * @param b 控制增益
  * @param dt 采样周期(秒)
- * @param k_aw 抗积分饱和增益
- * @param td_r TD快速跟踪因子(0表示不使用TD)
+ * @param k_aw 兼容保留的抗饱和增益(当前未启用回算)
+ * @param td_r TD快速跟踪因子(小于等于0表示不使用TD)
  * @param td_n TD滤波因子(无量纲) - 建议值1~5
  * @param td_max_x2 TD最大速度限制
  */
@@ -234,9 +235,9 @@ typedef struct {
     /* 输出限制 */
     float max_output;   /*!< 输出限幅 */
 
-    /* 抗积分饱和 */
-    float k_aw;         /*!< 抗积分饱和增益 */
-    float pre_out;      /*!< 上一时刻输出 */
+    /* 抗饱和兼容字段（当前未启用回算） */
+    float k_aw;         /*!< 兼容保留的抗饱和增益，不参与当前控制律 */
+    float pre_out;      /*!< 上一拍实际限幅输出，用于本拍LESO更新 */
 
     /* 采样周期 */
     float dt;           /*!< 采样周期(秒) */

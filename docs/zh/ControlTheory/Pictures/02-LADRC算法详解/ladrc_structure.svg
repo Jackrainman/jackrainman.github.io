@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">二阶 LADRC 控制机制</title>
+  <desc id="desc">参考 r 经过可选跟踪微分器 TD，以 v1、v2 输入 LSEF。LSEF 输出 u0，经 (u0-z3)/b0 补偿和限幅后，以 u_app 驱动被控对象。负载扰动 d 进入对象。输出 y 与测量噪声 n 相加得到 y_m，送入三阶 LESO；实际施加输入 u_app 延迟一拍后也送入 LESO。LESO 的 z1、z2 反馈至 LSEF，z3 反馈至补偿节点。</desc>
+  <defs>
+    <marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#3574ac"/></marker>
+    <marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#28816b"/></marker>
+    <marker id="orange-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#c88132"/></marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; fill: #26384a; }
+      .heading { font-size: 29px; font-weight: 700; }
+      .sub { font-size: 16px; fill: #68788a; }
+      .name { font-size: 21px; font-weight: 700; text-anchor: middle; }
+      .detail { font-size: 15px; text-anchor: middle; }
+      .signal { font-size: 18px; font-weight: 600; }
+      .small { font-size: 14px; fill: #68788a; }
+      .blue { fill: #3574ac; }
+      .green { fill: #28816b; }
+      .orange { fill: #b37228; }
+      .flow { fill: none; stroke: #3574ac; stroke-width: 2.5; stroke-linejoin: round; marker-end: url(#blue-arrow); }
+      .feedback { fill: none; stroke: #28816b; stroke-width: 2.5; stroke-linejoin: round; marker-end: url(#green-arrow); }
+      .disturbance { fill: none; stroke: #c88132; stroke-width: 2.5; marker-end: url(#orange-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="650" fill="#f7f9fc"/>
+  <rect x="24" y="24" width="1152" height="602" rx="18" fill="#ffffff" stroke="#e1e7ee"/>
+  <text x="55" y="72" class="heading">二阶 LADRC 控制机制</text>
+  <text x="56" y="103" class="sub">线性自抗扰控制 · 状态反馈 + 总扰动估计与补偿</text>
+  <line x1="56" y1="124" x2="1144" y2="124" stroke="#e8edf2"/>
+
+  <!-- 主控制链：参考 → TD → LSEF → 补偿 → 限幅 → 对象 -->
+  <text x="57" y="196" class="small">参考</text>
+  <text x="68" y="216" class="signal blue">r</text>
+  <path d="M58 230 H120" class="flow"/>
+
+  <rect x="120" y="190" width="140" height="80" rx="10" fill="#eef5fc" stroke="#7da7ce" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="190" y="220" class="name">可选 TD</text>
+  <text x="190" y="247" class="detail">跟踪微分器</text>
+  <path d="M260 215 H330" class="flow"/>
+  <path d="M260 248 H330" class="flow"/>
+  <text x="282" y="204" class="signal blue">v1</text>
+  <text x="282" y="239" class="signal blue">v2</text>
+
+  <rect x="330" y="185" width="175" height="90" rx="10" fill="#eef5fc" stroke="#7da7ce" stroke-width="1.5"/>
+  <text x="417.5" y="216" class="name">LSEF</text>
+  <text x="417.5" y="242" class="detail">线性状态误差反馈</text>
+  <text x="417.5" y="262" class="small" text-anchor="middle">基于 v1−z1、v2−z2</text>
+  <path d="M505 230 H570" class="flow"/>
+  <text x="524" y="216" class="signal blue">u0</text>
+
+  <rect x="570" y="185" width="140" height="90" rx="10" fill="#fff5e8" stroke="#d8a465" stroke-width="1.5"/>
+  <text x="640" y="214" class="name">扰动补偿</text>
+  <text x="640" y="248" font-size="20" text-anchor="middle">(u0−z3)/b0</text>
+  <path d="M710 230 H760" class="flow"/>
+  <text x="728" y="216" class="signal blue">u</text>
+
+  <rect x="760" y="190" width="95" height="80" rx="10" fill="#eef5fc" stroke="#7da7ce" stroke-width="1.5"/>
+  <text x="807.5" y="223" class="name">限幅</text>
+  <text x="807.5" y="248" class="detail">sat(u)</text>
+  <path d="M855 230 H940" class="flow"/>
+  <text x="867" y="211" class="signal blue">u_app</text>
+
+  <rect x="940" y="185" width="130" height="90" rx="10" fill="#eef5fc" stroke="#7da7ce" stroke-width="1.5"/>
+  <text x="1005" y="222" class="name">被控对象</text>
+  <text x="1005" y="250" class="detail">二阶系统</text>
+  <path d="M1005 148 V185" class="disturbance"/>
+  <text x="1022" y="157" class="signal orange">d</text>
+  <text x="1046" y="157" class="small">负载扰动</text>
+  <path d="M1070 230 H1141" class="flow"/>
+  <text x="1116" y="212" class="signal blue">y</text>
+  <circle cx="1110" cy="230" r="4" fill="#3574ac"/>
+
+  <!-- 实际执行输入的上一拍值进入观测器 -->
+  <circle cx="895" cy="230" r="4" fill="#3574ac"/>
+  <path d="M895 230 V330" class="flow"/>
+  <rect x="825" y="330" width="140" height="58" rx="9" fill="#f4f7fb" stroke="#a8b8ca" stroke-width="1.5"/>
+  <text x="895" y="354" font-size="18" font-weight="600" text-anchor="middle">一拍延迟 z⁻¹</text>
+  <text x="895" y="376" class="small" text-anchor="middle">限幅后的实际输入</text>
+  <path d="M895 388 V445" class="flow"/>
+  <text x="910" y="417" class="signal blue">u_app[k−1]</text>
+
+  <!-- 测量：y + n = y_m -->
+  <path d="M1110 230 V457" class="flow"/>
+  <text x="1122" y="343" class="signal blue">y</text>
+  <circle cx="1110" cy="475" r="18" fill="#fff5e8" stroke="#d8a465" stroke-width="1.8"/>
+  <text x="1110" y="482" font-size="23" text-anchor="middle">+</text>
+  <path d="M1110 550 V493" class="disturbance"/>
+  <text x="1128" y="531" class="signal orange">n</text>
+  <text x="1067" y="572" class="small">测量噪声</text>
+  <path d="M1092 475 H980" class="flow"/>
+  <text x="1022" y="461" class="signal blue">y_m</text>
+
+  <!-- LESO：状态与总扰动估计 -->
+  <rect x="720" y="445" width="260" height="95" rx="11" fill="#edf8f3" stroke="#69a792" stroke-width="1.5"/>
+  <text x="850" y="476" class="name">三阶 LESO</text>
+  <text x="850" y="503" class="detail">线性扩张状态观测器</text>
+  <text x="850" y="525" class="small" text-anchor="middle">输入：y_m[k]、u_app[k−1]</text>
+
+  <path d="M720 490 H417 V275" class="feedback"/>
+  <text x="442" y="475" class="signal green">z1 / z2</text>
+  <text x="442" y="516" class="small">输出估计 / 输出变化率估计</text>
+
+  <path d="M760 445 V405 H640 V275" class="feedback"/>
+  <text x="655" y="372" class="signal green">z3</text>
+  <text x="655" y="394" class="small">总扰动估计</text>
+
+  <rect x="56" y="329" width="295" height="92" rx="10" fill="#f7f9fc"/>
+  <text x="73" y="355" font-size="15" font-weight="600">控制量与估计量</text>
+  <text x="73" y="381" class="small">u0：期望加速度控制量</text>
+  <text x="73" y="404" class="small">b0：输入增益估计值</text>
+
+  <line x1="56" y1="577" x2="1003" y2="577" stroke="#e8edf2"/>
+  <text x="56" y="605" class="small">TD 整形参考；LSEF 调节跟踪误差；LESO 估计状态与总扰动，z3 用于实时补偿。</text>
+  <line x1="902" y1="601" x2="926" y2="601" stroke="#3574ac" stroke-width="3"/>
+  <text x="934" y="606" class="small">控制 / 测量</text>
+  <line x1="1035" y1="601" x2="1059" y2="601" stroke="#28816b" stroke-width="3"/>
+  <text x="1067" y="606" class="small">估计反馈</text>
+</svg>

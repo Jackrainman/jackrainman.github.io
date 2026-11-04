@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">总扰动的定义与补偿</title>
+  <desc id="desc">实际对象中的内部动态、负载和输入增益误差被合并为总扰动，LESO 估计后在控制输入中补偿，残差为 f 减 z3。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#52514e"/></marker>
+    <style>
+      .box{stroke-width:2;rx:16}.title{font:700 26px 'Microsoft YaHei',sans-serif;fill:#0b0b0b}.head{font:700 22px 'Microsoft YaHei',sans-serif;fill:#0b0b0b}.body{font:19px 'Microsoft YaHei',sans-serif;fill:#52514e}.math{font:20px 'Consolas','Microsoft YaHei',monospace;fill:#0b0b0b}.note{font:17px 'Microsoft YaHei',sans-serif;fill:#52514e}.arrow{stroke:#52514e;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#fcfcfb"/>
+  <text x="48" y="50" class="title">总扰动：把影响输入—输出关系的未知部分放在一起</text>
+
+  <rect x="48" y="92" width="300" height="250" class="box" fill="#f3f7fd" stroke="#2a78d6"/>
+  <text x="76" y="132" class="head">实际对象</text>
+  <text x="76" y="176" class="math">ÿ = f_phys + b u + d</text>
+  <text x="76" y="220" class="body">内部动态：阻尼、非线性</text>
+  <text x="76" y="254" class="body">外部负载：d</text>
+  <text x="76" y="288" class="body">实际输入增益：b</text>
+
+  <path d="M348 217 L402 217" class="arrow"/>
+
+  <rect x="414" y="76" width="360" height="282" class="box" fill="#fff7f2" stroke="#eb6834"/>
+  <text x="442" y="118" class="head">用名义增益 b0 改写</text>
+  <text x="442" y="166" class="math">ÿ = f + b0 u</text>
+  <rect x="438" y="194" width="312" height="86" rx="10" fill="#ffffff" stroke="#e1e0d9"/>
+  <text x="454" y="228" class="math">f = f_phys</text>
+  <text x="454" y="260" class="math">    + (b-b0)u + d</text>
+  <text x="442" y="326" class="note">f 包含增益误差，不只是外部负载</text>
+
+  <path d="M774 217 L828 217" class="arrow"/>
+
+  <rect x="840" y="92" width="312" height="250" class="box" fill="#f1fbf6" stroke="#1baf7a"/>
+  <text x="868" y="132" class="head">LESO 估计并补偿</text>
+  <text x="868" y="178" class="math">u = (u0-z3)/b0</text>
+  <text x="868" y="224" class="math">ÿ = u0 + (f-z3)</text>
+  <text x="868" y="270" class="body">f-z3 是尚未抵消的残差</text>
+  <text x="868" y="306" class="body">估计准确时近似双积分器</text>
+
+  <rect x="214" y="402" width="772" height="96" rx="14" fill="#f5f4f0" stroke="#c3c2b7"/>
+  <text x="242" y="442" class="body">测量噪声走另一条通道：ym = y + n</text>
+  <text x="242" y="476" class="note">它会影响 LESO 校正，不能像负载扰动一样由控制输入直接抵消。</text>
+</svg>
