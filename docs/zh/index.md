@@ -39,7 +39,7 @@ comments: false
     <span class="landing-stat-label">技术主题</span>
   </div>
   <div class="landing-stat">
-    <span class="landing-stat-value">43</span>
+    <span class="landing-stat-value">45</span>
     <span class="landing-stat-label">公开技术文档</span>
   </div>
   <div class="landing-stat">
@@ -82,6 +82,7 @@ comments: false
 
     聚焦各类底盘的运动学解算模型、坐标系转换以及从期望速度到轮速的映射。
 
+    [:material-arrow-right: 坐标与速度接口](Chassis/底盘坐标与速度接口约定.md) ·
     [:material-arrow-right: 底盘正解算](Chassis/底盘正解算.md) ·
     [:material-arrow-right: 舵轮坐标约定](Chassis/steering_wheel与底盘全链路坐标轴约定.md)
 
